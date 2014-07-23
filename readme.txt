@@ -4,8 +4,8 @@ Contributors: sethmatics
 Donate link: http://sethmatics.com/extend/plugins/sm-dashboard-pages-navigator-tree/
 Tags: admin, dashboard, widget, tree, navigation, navigate, navi, page, pages, links, hierarchy
 Requires at least: 3.4
-Tested up to: 3.9
-Stable tag: 1.0.3
+Tested up to: 4.0-beta2
+Stable tag: 1.0.5
 
 Navigate all your pages, with labels for private and pending, in a nice page tree heirarchy on the admin dashboard provided by http://sethmatics.com/.
 

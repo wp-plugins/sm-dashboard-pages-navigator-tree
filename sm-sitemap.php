@@ -58,11 +58,11 @@ function sm_exclude_form(){
 
 function sm_sitemap_exclude_save(){
 	global $post;
-	
+	if(!isset($post)) return false;
 	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return $post->ID;
 	
 	// verify
-	if ( !wp_verify_nonce( $_POST['sm_sitemap_nonce'], plugin_basename( __FILE__ ) ) ) return;
+	if (!isset($_POST['sm_sitemap_nonce']) || !wp_verify_nonce( $_POST['sm_sitemap_nonce'], plugin_basename( __FILE__ ) ) ) return;
 	if ( 'page' == $_POST['post_type'] ) {
 		if ( !current_user_can( 'edit_page', $post_id ) ) return;
 		else

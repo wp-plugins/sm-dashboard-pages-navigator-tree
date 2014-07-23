@@ -1,12 +1,19 @@
 <?php
-/*
-Plugin Name: SM Sitemap Navigator
-Plugin URI: http://sethmatics.com/extend/
-Description: Lists all pages in site in admin
-Author: Jeremy Smeltzer and Seth Carstens
-Version: 1.0.3
-Author URI: http://sethmatics.com/
-*/
+/**
+ * Plugin Name: SM Sitemap Navigator
+ * Plugin URI: http://sethmatics.com/extend/plugins/sm-dashboard-pages-navigator-tree/
+ * Description: Lists all pages in site in admin
+ * Author: sethmatics, bigj9901
+ * Version: 1.0.5
+ * Author URI: http://sethamtics.com/
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: sm-dashboard-pages-navigator-tree
+ *
+ * @package sm-dashboard-pages-navigator-tree
+ * @category plugin
+ * @author sethmatics, bigj9901
+ */
 
 define('SM_SITEMAP_NAV_DIR', WP_PLUGIN_DIR.'/sm-dashboard-pages-navigator-tree/');
 define('SM_SITEMAP_NAV_URL',plugins_url('/', __FILE__));
@@ -65,6 +72,7 @@ function get_sm_pagetreee($parentId, $lvl){
 			$children = array();
 			// get template being used by page so we can exclude those set to 404 tpl
 			//TODO: Fix the fact that 404 pages have a view button that costs too much RAM.
+	        $pageTemplate ='';
 			//$pageTemplate = get_post_meta($page->ID, '_wp_page_template',true );
 
 			// get child pages and revisions for current post and combine child pages and revisions and count them
@@ -88,7 +96,10 @@ function get_sm_pagetreee($parentId, $lvl){
 			
 			// show child count if there are children
 			if($childCount > 0) $output.= '<span class="childCount"> ('.$childCount.')</span> ';
-			
+
+	        //setup page author
+	        $revAuthorID = $page->post_author;
+
 			// if its not a revision
 			if($page->post_type != 'revision') {
 				
@@ -126,8 +137,6 @@ function get_sm_pagetreee($parentId, $lvl){
 				$output.= "<span class=\"action-links\"> - ";
 				$output.= "<a class=\"viewPage\" href=\"/?p=$page->ID&amp;post_type=revision&amp;preview=true\">preview</a>".PHP_EOL;
 				
-				$revAuthorID = $page->post_author;
-				
 				$current_user = wp_get_current_user();
 				$currentUserID = $current_user->ID ;
 				
@@ -164,7 +173,7 @@ function meg($mem_usage)
 function list_sm_pagetree() {
 	// get and combine child pages and revision s
     $memstart2 = memory_get_usage();
-	$output .= '<div id="smPagetree"><p><a href="#" id="expand">Expand All</a> | <a href="#" id="collapse">Collapse All</a></p>'.get_sm_pagetreee(0, 0).'</div>'.PHP_EOL;
+	$output = '<div id="smPagetree"><p><a href="#" id="expand">Expand All</a> | <a href="#" id="collapse">Collapse All</a></p>'.get_sm_pagetreee(0, 0).'</div>'.PHP_EOL;
 	$memend2 = memory_get_usage();
 	$mem_usage = (float)($memend2-$memstart2);
 	//$output = '<h2>Memory Used: '.meg($mem_usage).' of '.meg($memend2).'</h2>'.$output;
