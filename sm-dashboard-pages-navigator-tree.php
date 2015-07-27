@@ -3,8 +3,8 @@
  * Plugin Name: SM Sitemap Navigator
  * Plugin URI: http://sethmatics.com/extend/plugins/sm-dashboard-pages-navigator-tree/
  * Description: Lists all pages in site in admin
- * Author: sethmatics, bigj9901
- * Version: 1.0.5
+ * Author: sethcarstens
+ * Version: 1.0.6
  * Author URI: http://sethamtics.com/
  * License: GNU General Public License v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,7 @@
  *
  * @package sm-dashboard-pages-navigator-tree
  * @category plugin
- * @author sethmatics, bigj9901
+ * @author Seth Carsten <seth.carstens@gmail.com>
  */
 
 define('SM_SITEMAP_NAV_DIR', WP_PLUGIN_DIR.'/sm-dashboard-pages-navigator-tree/');
